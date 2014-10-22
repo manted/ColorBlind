@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController 
+
+-(void)pressBlock:(BOOL)isCorrect;
 
 @end
