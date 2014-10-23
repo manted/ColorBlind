@@ -12,5 +12,6 @@
 @interface ViewController : UIViewController 
 
 -(void)pressBlock:(BOOL)isCorrect;
+-(void)gameOver;
 
 @end

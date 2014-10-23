@@ -8,7 +8,7 @@
 
 #import "ColorView.h"
 
-#define COLOR_COUNT 10
+#define COLOR_COUNT 7
 
 @interface ColorView()
 
@@ -34,9 +34,9 @@ static NSArray* colorStrings;
                   [UIColor greenColor],
                   [UIColor redColor],
                   [UIColor yellowColor],
+                  [UIColor orangeColor],
                   [UIColor grayColor],
                   [UIColor purpleColor],
-                  [UIColor orangeColor],
                   [UIColor brownColor], nil];
     }
     return colors;
@@ -52,9 +52,9 @@ static NSArray* colorStrings;
                         @"GREEN",
                         @"RED",
                         @"YELLOW",
+                        @"ORANGE",
                         @"GRAY",
                         @"PURPLE",
-                        @"ORANGE",
                         @"BROWN", nil];
     }
     return colorStrings;
@@ -66,7 +66,7 @@ static NSArray* colorStrings;
     if (self) {
         // Initialization code
         [self addSubview:self.label];
-        self.layer.borderColor = [UIColor cyanColor].CGColor;
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.0f;
     }
     return self;
