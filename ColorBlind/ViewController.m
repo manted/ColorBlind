@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "ColorView.h"
 #import "ProgressView.h"
+#import "PopupVC.h"
+#import "UIViewController+CWPopup.h"
 
 @interface ViewController ()
 
@@ -210,17 +212,21 @@
     self.isPlaying = YES;
     [self resetColors];
     [self resetProgressView];
+    [self.progressView start];
 }
 
 -(void)resetProgressView
 {
-    float time = MAX(5 - (self.score / 100.0) * 2 * log10f(self.score), 3);
+    if (self.score == 0) {
+        [self.progressView setTotalTime:4.5];
+        return;
+    }
+    float time = MAX(4.5 - (self.score / 100.0) * 2 * log10f(self.score), 2.6);
 //    float time1 = 5 - (20 / 100.0) * 2 * log10f(20);
 //    float time2 = 5 - (40 / 100.0) * 2 * log10f(40);
 //    float time3 = 5 - (60 / 100.0) * 2 * log10f(60);
 //    NSLog(@"time1 = %f time2 = %f time3 = %f", time1, time2, time3);
     [self.progressView setTotalTime:time];
-    [self.progressView start];
 }
 
 -(void)gameOver
@@ -228,7 +234,26 @@
     NSLog(@"game over");
     self.isPlaying = NO;
     [self.progressView stop];
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:BEST_SCORE];
+    if (self.score > best) {
+        [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:BEST_SCORE];
+    }
     // show dialog
+    PopupVC *popup = [[PopupVC alloc] initWithNibName:@"PopupVC" bundle:nil];
+    popup.vc = self;
+    [popup setScore:self.score];
+    [self presentPopupViewController:popup animated:YES completion:nil];
+}
+
+-(void)tryAgain
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewControllerAnimated:YES completion:^(){
+        }];
+    }
+    self.score = 0;
+    [self resetColors];
+    [self resetProgressView];
 }
 
 -(void)setScore:(int)score
@@ -265,7 +290,7 @@
             [self resetColors];
             [self resetProgressView];
         } else {
-            self.score++;
+            self.score = 1;
             [self play];
         }
     } else {

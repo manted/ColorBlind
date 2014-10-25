@@ -41,6 +41,7 @@
 {
     _totalTime = time;
     _currentTime = _totalTime;
+    [self setNeedsDisplay];
 }
 
 -(void)start
@@ -94,7 +95,7 @@
                        clockwise:NO];
     
     // Set the display for the path, and stroke it
-    bezierPath.lineWidth = 10;
+    bezierPath.lineWidth = 9;
     float r = MIN((1 - percent) * 2, 1);
     float g = MIN(percent * 2, 1);
     UIColor* color = [UIColor colorWithRed:r green:g blue:0 alpha:1];

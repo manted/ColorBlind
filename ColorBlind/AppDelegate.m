@@ -13,6 +13,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"best"] == nil) {
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"best"];
+    }
     return YES;
 }
 							
