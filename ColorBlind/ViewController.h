@@ -16,5 +16,7 @@
 -(void)pressBlock:(BOOL)isCorrect;
 -(void)gameOver;
 -(void)tryAgain;
-
+-(void)pause;
+-(void)resume;
+-(UIColor*)getScoreColor:(int)score;
 @end

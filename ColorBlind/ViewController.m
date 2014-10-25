@@ -12,6 +12,8 @@
 #import "PopupVC.h"
 #import "UIViewController+CWPopup.h"
 
+#define COLOR_SCORE_COUNT 15.0
+
 @interface ViewController ()
 
 @property (nonatomic) int score;
@@ -181,6 +183,29 @@
     }
 }
 
+-(UIColor*)getScoreColor:(int)score
+{
+    float r = 1, g = 0, b = 0;
+    if (score < COLOR_SCORE_COUNT) {
+        r = 0;
+        g = score / COLOR_SCORE_COUNT;
+        b = 1;
+    } else if (score < COLOR_SCORE_COUNT * 2) {
+        r = 0;
+        g = 1;
+        b = (COLOR_SCORE_COUNT * 2 - score) / COLOR_SCORE_COUNT;
+    } else if (score < COLOR_SCORE_COUNT * 3) {
+        r = (score - COLOR_SCORE_COUNT * 2) / COLOR_SCORE_COUNT;
+        g = 1;
+        b = 0;
+    } else if (score < COLOR_SCORE_COUNT * 4) {
+        r = 1;
+        g = (COLOR_SCORE_COUNT * 4 - score) / COLOR_SCORE_COUNT;
+        b = 0;
+    }
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+}
+
 -(int)getBlockCount
 {
     return self.score + 2 > 16 ? 16 : self.score + 2;
@@ -256,30 +281,27 @@
     [self resetProgressView];
 }
 
+-(void)pause
+{
+    if (self.isPlaying) {
+        [self.progressView stop];
+        NSLog(@"pause");
+    }
+}
+
+-(void)resume
+{
+    if (self.isPlaying) {
+        [self.progressView start];
+        NSLog(@"resume");
+    }
+}
+
 -(void)setScore:(int)score
 {
     _score = score;
     [self.scoreLabel setText:[NSString stringWithFormat:@"%i", score]];
-    float r = 1, g = 0, b = 0;
-    if (score < 10) {
-        r = 0;
-        g = score / 10.0;
-        b = 1;
-    } else if (score < 20) {
-        r = 0;
-        g = 1;
-        b = (20 - score) / 10.0;
-    } else if (score < 30) {
-        r = (score - 20) / 10.0;
-        g = 1;
-        b = 0;
-    } else if (score < 40) {
-        r = 1;
-        g = (40 - score) / 10.0;
-        b = 0;
-    }
-    UIColor* color = [UIColor colorWithRed:r green:g blue:b alpha:1];
-    [self.scoreLabel setTextColor:color];
+    [self.scoreLabel setTextColor:[self getScoreColor:score]];
 }
 
 -(void)pressBlock:(BOOL)isCorrect

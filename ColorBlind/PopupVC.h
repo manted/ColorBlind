@@ -15,8 +15,8 @@
 @interface PopupVC : UIViewController
 
 @property (nonatomic, strong) ViewController *vc;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bestLabel;
+@property (nonatomic, strong) UILabel *scoreLabel;
+@property (nonatomic, strong) UILabel *bestLabel;
 
 -(void)setScore:(int)score;
 - (IBAction)tryAgain:(id)sender;
