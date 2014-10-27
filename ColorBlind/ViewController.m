@@ -65,7 +65,7 @@
         _scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, width, width)];
         [_scoreLabel setAdjustsFontSizeToFitWidth:YES];
         [_scoreLabel setBackgroundColor:[UIColor clearColor]];
-        [_scoreLabel setFont:[UIFont fontWithName:@"AmericanTypewriter-Bold" size:40]];
+        [_scoreLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:40]];
         [_scoreLabel setTextColor:[UIColor blueColor]];
         [_scoreLabel setTextAlignment:NSTextAlignmentCenter];
     }

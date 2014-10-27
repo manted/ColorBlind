@@ -8,7 +8,7 @@
 
 #import "ColorView.h"
 
-#define COLOR_COUNT 7
+#define COLOR_COUNT 6
 
 @interface ColorView()
 
@@ -28,13 +28,13 @@ static NSArray* colorStrings;
 {
     if (!colors) {
         colors = [[NSArray alloc] initWithObjects:
-                  [UIColor blackColor],
                   [UIColor whiteColor],
                   [UIColor blueColor],
                   [UIColor greenColor],
                   [UIColor redColor],
                   [UIColor yellowColor],
                   [UIColor orangeColor],
+                  [UIColor blackColor],
                   [UIColor grayColor],
                   [UIColor purpleColor],
                   [UIColor brownColor], nil];
@@ -46,13 +46,13 @@ static NSArray* colorStrings;
 {
     if (!colorStrings) {
         colorStrings = [[NSArray alloc] initWithObjects:
-                        @"BLACK",
                         @"WHITE",
                         @"BLUE",
                         @"GREEN",
                         @"RED",
                         @"YELLOW",
                         @"ORANGE",
+                        @"BLACK",
                         @"GRAY",
                         @"PURPLE",
                         @"BROWN", nil];
@@ -79,7 +79,7 @@ static NSArray* colorStrings;
         _label = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width * 0.1, 0, self.frame.size.width * 0.8, self.frame.size.height)];
         [_label setAdjustsFontSizeToFitWidth:YES];
         [_label setBackgroundColor:[UIColor clearColor]];
-        [_label setFont:[UIFont fontWithName:@"AmericanTypewriter-Bold" size:40]];
+        [_label setFont:[UIFont fontWithName:@"Helvetica Neue" size:40]];
         [_label setTextAlignment:NSTextAlignmentCenter];
     }
     return _label;

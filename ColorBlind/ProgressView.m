@@ -75,7 +75,7 @@
     
     [[UIColor whiteColor] setFill];
     CGContextAddArc(context, CGRectGetMidX(rect), CGRectGetMidY(rect),
-                    CGRectGetWidth(rect) / 2.4, 0, 2 * M_PI, YES);
+                    CGRectGetWidth(rect) / 2.45, 0, 2 * M_PI, YES);
     CGContextFillPath(context);
     
     float percent = self.currentTime / self.totalTime;
@@ -95,7 +95,7 @@
                        clockwise:NO];
     
     // Set the display for the path, and stroke it
-    bezierPath.lineWidth = 9;
+    bezierPath.lineWidth = 7;
     float r = MIN((1 - percent) * 2, 1);
     float g = MIN(percent * 2, 1);
     UIColor* color = [UIColor colorWithRed:r green:g blue:0 alpha:1];

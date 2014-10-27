@@ -1,6 +1,6 @@
 //
 //  PopupVC.m
-//  NextNum
+//  ColorBlind
 //
 //  Created by Manted on 16/03/2014.
 //  Copyright (c) 2014 Ye Hua. All rights reserved.
@@ -34,10 +34,11 @@
     [super viewWillAppear:animated];
     [self.view addSubview:self.scoreLabel];
     [self.view addSubview:self.bestLabel];
+    [self.view addSubview:self.yourBestLabel];
     [self.scoreLabel setText:[NSString stringWithFormat:@"%d",self.score]];
     [self.scoreLabel setTextColor:[self.vc getScoreColor:self.score]];
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:BEST_SCORE];
-    [self.bestLabel setText:[NSString stringWithFormat:@"%ld", best]];
+    [self.bestLabel setText:[NSString stringWithFormat:@"%ld", (long)best]];
     [self.bestLabel setTextColor:[self.vc getScoreColor:(int)best]];
     [self.view setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
 }
@@ -63,7 +64,7 @@
         _scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, width, height)];
         [_scoreLabel setAdjustsFontSizeToFitWidth:YES];
         [_scoreLabel setBackgroundColor:[UIColor clearColor]];
-        [_scoreLabel setFont:[UIFont fontWithName:@"Helvetica" size:60]];
+        [_scoreLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:60]];
         [_scoreLabel setTextAlignment:NSTextAlignmentCenter];
     }
     return _scoreLabel;
@@ -80,10 +81,29 @@
         _bestLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, width, height)];
         [_bestLabel setAdjustsFontSizeToFitWidth:YES];
         [_bestLabel setBackgroundColor:[UIColor clearColor]];
-        [_bestLabel setFont:[UIFont fontWithName:@"Helvetica" size:32]];
+        [_bestLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:32]];
         [_bestLabel setTextAlignment:NSTextAlignmentCenter];
     }
     return _bestLabel;
+}
+
+-(UILabel*)yourBestLabel
+{
+    if (!_yourBestLabel) {
+        CGRect frame = self.view.bounds;
+        float width = frame.size.width;
+        float height = frame.size.height / 3;
+        float x = 0;
+        float y = frame.size.height * 0.3;
+        _yourBestLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, width, height)];
+        [_yourBestLabel setAdjustsFontSizeToFitWidth:YES];
+        [_yourBestLabel setBackgroundColor:[UIColor clearColor]];
+        [_yourBestLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:32]];
+        [_yourBestLabel setTextAlignment:NSTextAlignmentCenter];
+        [_yourBestLabel setTextColor:[UIColor redColor]];
+        [_yourBestLabel setText:@"Your Best"];
+    }
+    return _yourBestLabel;
 }
 
 @end
