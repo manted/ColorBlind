@@ -246,7 +246,7 @@
         [self.progressView setTotalTime:4.5];
         return;
     }
-    float time = MAX(4.5 - (self.score / 100.0) * 2 * log10f(self.score), 2.6);
+    float time = MAX(4.5 - (self.score / 50.0) * 2 * log10f(self.score), 1.8);
 //    float time1 = 5 - (20 / 100.0) * 2 * log10f(20);
 //    float time2 = 5 - (40 / 100.0) * 2 * log10f(40);
 //    float time3 = 5 - (60 / 100.0) * 2 * log10f(60);
